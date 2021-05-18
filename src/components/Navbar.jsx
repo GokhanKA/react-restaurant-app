@@ -1,16 +1,18 @@
-import React, {useState} from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
-  const [isLogin,setIsLogin] = useState(true);
+import { AuthContext } from "../context/authContext";
 
+const Navbar = () => {
+  const { isLogin, logout } = useContext(AuthContext)
+  
   return (
     <nav
-      className="rounded flex justify-between shadow-lg items-center h-16 bg-green-600 text-white relative shadow-sm font-mono"
+      className="rounded-b-lg flex justify-between shadow-lg items-center h-16 bg-red-500 text-white relative font-mono"
       role="navigation"
     >
       <Link to="/" className="pl-8">
-        <h2 className="font-semibold font-sans">Restaurant-App </h2>
+        <h2 className="font-medium text-xl font-sans">Restaurant App</h2>
       </Link>
       <div className="px-4 cursor-pointer md:hidden">
         <svg
@@ -28,23 +30,30 @@ const Navbar = () => {
           ></path>
         </svg>
       </div>
-      {isLogin ? <div className="pr-8 md:block hidden">
-        <Link className="p-4" to="/">
-          Home
-        </Link>
-        <Link className="p-4" to="/">
-          Table
-        </Link>
-        <Link className="p-4" to="/">
-          Reservation
-        </Link>
-        <Link className="p-4" to="/">
-          Reporting
-        </Link>
-        <Link className="p-4" to="/">
-          Logout
-        </Link>
-      </div> : null}
+      {isLogin ? <div className=""><h2 className="font-medium text-xl font-sans">Gökhan-Ankara</h2></div> : null}
+      {isLogin ? (
+        
+        <div className="pr-8 font-sans font-medium md:block hidden">
+          <Link className="p-4 hover:text-gray-500" to="/">
+            Home
+          </Link>
+          <Link className="p-4 hover:text-gray-500" to="/tables">
+            Tables
+          </Link>
+          <Link className="p-4 hover:text-gray-500" to="/">
+            Reservations
+          </Link>
+          <Link className="p-4 hover:text-gray-500" to="/">
+            Reportings
+          </Link>
+          <button
+            onClick={logout}
+            className="p-4 font-medium hover:text-indigo-600"
+          >
+            Logout
+          </button>
+        </div>
+      ) : null}
     </nav>
   );
 };

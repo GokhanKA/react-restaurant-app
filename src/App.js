@@ -7,16 +7,20 @@ import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import HomePage from './pages/Homepage';
 import SignUp from './pages/SignUp';
+import Tables from './pages/Tables';
+
 
 
 function App() {
   return (
-    <div className="bg-gray-100" >
+    <div className="bg-gray-200" >
       <Navbar/>
       <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route  path='/Login' component={Login} />
-          <Route  path='/SignUp' component={SignUp} />
+          <Route  path='/' exact component={HomePage} />
+          <Route  path='/login' component={Login} />
+          <Route  path='/signup' component={SignUp} />
+          <Route  path='/tables' component={Tables} />
+
 
 
       </Switch>
